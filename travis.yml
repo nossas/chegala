@@ -1,0 +1,23 @@
+language: ruby
+rvm:
+  - 2.1.2
+
+before_script:
+  - "cp config/database.sample.yml config/database.yml"
+  - "psql -c 'create role chegala SUPERUSER LOGIN;' postgres"
+  - "psql -c 'create database chegala_test;' -U chegala postgres"
+  - "bin/rake db:migrate RAILS_ENV=test"
+  - "sh -e /etc/init.d/xvfb start"
+
+env:
+  - DISPLAY=:99.0
+
+script:
+  - "bundle exec rspec spec"
+
+branches:
+  only:
+    - master
+
+services:
+  - redis-server
