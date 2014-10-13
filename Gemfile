@@ -17,7 +17,7 @@ gem 'jquery-rails'
 gem 'spring', group: :development
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem 'rails_12factor', group: [:production, :staging]
