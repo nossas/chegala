@@ -24,6 +24,7 @@ gem 'rails_12factor', group: [:production, :staging]
 
 # monitoring
 gem 'appsignal'
+gem 'coveralls', require: false
 
 # testing
 group :development, :test do
