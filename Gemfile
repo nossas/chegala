@@ -22,4 +22,10 @@ gem 'spring', group: :development
 # gem 'debugger', group: [:development, :test]
 gem 'rails_12factor', group: [:production, :staging]
 
+# monitoring
 gem 'appsignal'
+
+# testing
+group :development, :test do
+  gem 'rspec-rails', '~> 3.1.0'
+end
