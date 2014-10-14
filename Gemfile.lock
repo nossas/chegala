@@ -31,6 +31,7 @@ GEM
       rack
       thread_safe
     arel (5.0.1.20140414130214)
+    bcrypt (3.1.7)
     builder (3.2.2)
     colorize (0.7.3)
     coveralls (0.6.7)
@@ -39,6 +40,12 @@ GEM
       rest-client
       simplecov (>= 0.7)
       thor
+    devise (3.3.0)
+      bcrypt (~> 3.0)
+      orm_adapter (~> 0.1)
+      railties (>= 3.2.6, < 5)
+      thread_safe (~> 0.1)
+      warden (~> 1.2.3)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.1)
@@ -54,6 +61,7 @@ GEM
     mime-types (2.4.1)
     minitest (5.4.2)
     multi_json (1.10.1)
+    orm_adapter (0.5.0)
     pg (0.17.1)
     rack (1.5.2)
     rack-test (0.6.2)
@@ -139,6 +147,8 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    warden (1.2.3)
+      rack (>= 1.0)
 
 PLATFORMS
   ruby
@@ -146,6 +156,7 @@ PLATFORMS
 DEPENDENCIES
   appsignal
   coveralls
+  devise
   jquery-rails
   pg
   rails (= 4.1.6)

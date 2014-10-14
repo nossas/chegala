@@ -30,3 +30,6 @@ gem 'coveralls', require: false
 group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
 end
+
+# authentication
+gem 'devise'
