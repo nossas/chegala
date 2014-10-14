@@ -16,20 +16,14 @@ gem 'jquery-rails'
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring', group: :development
 
-# Use unicorn as the app server
-gem 'unicorn'
-# Use debugger
-# gem 'debugger', group: [:development, :test]
 gem 'rails_12factor', group: [:production, :staging]
 
-# monitoring
-gem 'appsignal'
-gem 'coveralls', require: false
-
-# testing
 group :development, :test do
   gem 'rspec-rails', '~> 3.1.0'
 end
 
-# authentication
+gem 'appsignal'
+gem 'coveralls', require: false
 gem 'devise'
+gem 'sidekiq'
+gem 'unicorn'
