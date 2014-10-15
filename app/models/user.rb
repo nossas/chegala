@@ -5,4 +5,22 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   after_create { UserWorker.perform_async(self.id) }
+
+  validates :first_name, :last_name, presence: true
+
+  def name
+    "#{self.first_name} #{self.last_name}"
+  end
+
+  def create_mailchimp_organizer_segment
+    segment = Gibbon::API.lists.segment_add(
+      id: ENV['MAILCHIMP_LIST_ID'],
+      opts: {
+        type: "static",
+        name: "[Organizador] #{self.name}"
+      }
+    )
+
+    self.update_attribute :mailchimp_organizer_segment_uid, segment["id"].to_s
+  end
 end

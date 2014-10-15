@@ -1,0 +1,8 @@
+{
+  "id": 42,
+  "name": "example name",
+  "member_count": 42,
+  "created_date": "example created_date",
+  "last_update": "example last_update",
+  "last_reset": "example last_reset"
+}
