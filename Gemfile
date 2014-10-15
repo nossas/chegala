@@ -30,3 +30,4 @@ gem 'unicorn'
 gem 'gibbon'
 gem 'webmock', group: :test
 gem 'shoulda-matchers', require: false, group: :test
+gem 'machinist', group: :test

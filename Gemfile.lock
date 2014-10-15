@@ -68,6 +68,7 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.1)
     kgio (2.9.2)
+    machinist (2.0)
     mail (2.6.1)
       mime-types (>= 1.16, < 3)
     mime-types (2.4.1)
@@ -188,6 +189,7 @@ DEPENDENCIES
   devise
   gibbon
   jquery-rails
+  machinist
   pg
   rails (= 4.1.6)
   rails_12factor
