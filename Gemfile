@@ -27,3 +27,6 @@ gem 'coveralls', require: false
 gem 'devise'
 gem 'sidekiq'
 gem 'unicorn'
+gem 'gibbon'
+gem 'webmock', group: :test
+gem 'shoulda-matchers', require: false, group: :test
