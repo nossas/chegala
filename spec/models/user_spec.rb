@@ -19,4 +19,12 @@ RSpec.describe User, :type => :model do
       }.to change{ subject.mailchimp_organizer_segment_uid }
     end
   end
+
+  describe "#name" do
+    it "should be the first_name followed by the last_name" do
+      subject.first_name = "Lionel"
+      subject.last_name = "Messi"
+      expect(subject.name).to be_eql("Lionel Messi")
+    end
+  end
 end
