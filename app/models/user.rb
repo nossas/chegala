@@ -21,6 +21,6 @@ class User < ActiveRecord::Base
       }
     )
 
-    self.update_attribute :mailchimp_segment_uid, segment["id"].to_s
+    self.update_attribute :mailchimp_segment_uid, segment["id"]
   end
 end
