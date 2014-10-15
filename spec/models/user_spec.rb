@@ -4,8 +4,8 @@ RSpec.describe User, :type => :model do
   it { should validate_presence_of :first_name }
   it { should validate_presence_of :last_name }
 
-  describe "#create_mailchimp_organizer_segment" do
-    it "should update mailchimp_organizer_segment_uid" do
+  describe "#create_mailchimp_segment" do
+    it "should update mailchimp_segment_uid" do
       stub_request(:post, "https://api.mailchimp.com/2.0/lists/segment-add").
          with(:body => "{\"apikey\":\"#{ENV['MAILCHIMP_API_KEY']}\",\"id\":\"#{ENV['MAILCHIMP_LIST_ID']}\",\"opts\":{\"type\":\"static\",\"name\":\"[Organizador] #{subject.name}\"}}").
          to_return(
@@ -15,8 +15,8 @@ RSpec.describe User, :type => :model do
         )
 
       expect {
-        subject.create_mailchimp_organizer_segment
-      }.to change{ subject.mailchimp_organizer_segment_uid }
+        subject.create_mailchimp_segment
+      }.to change{ subject.mailchimp_segment_uid }
     end
   end
 
