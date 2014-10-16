@@ -11,16 +11,4 @@ class User < ActiveRecord::Base
   def name
     "#{self.first_name} #{self.last_name}"
   end
-
-  def create_mailchimp_segment
-    segment = Gibbon::API.lists.segment_add(
-      id: ENV['MAILCHIMP_LIST_ID'],
-      opts: {
-        type: "static",
-        name: "[Organizador] #{self.name}"
-      }
-    )
-
-    self.update_attribute :mailchimp_segment_uid, segment["id"]
-  end
 end
