@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  after_create { SubscribeToMailchimpListWorker.perform_async(self.id, 'mailchimp_uid') }
+  after_create { SubscribeToMailchimpListWorker.perform_async(self.id) }
 
   validates :first_name, :last_name, presence: true
 
