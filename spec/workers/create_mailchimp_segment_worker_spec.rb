@@ -2,10 +2,11 @@ require 'rails_helper'
 
 RSpec.describe CreateMailchimpSegmentWorker, :type => :worker do
   describe '#perform' do
-    let(:segment_name)  { "Segment Name" }
-    let(:event)         { Event.make! }
-    let(:resource_name) { "Event" }
-    let(:resource_id)   { event.id }
+    let(:segment_name)                  { "Segment Name" }
+    let(:event)                         { Event.make! }
+    let(:resource_name)                 { "Event" }
+    let(:resource_id)                   { event.id }
+    let(:resource_mailchimp_uid_column) { "mailchimp_segment_uid" }
 
     before do
       stub_request(:post, "https://api.mailchimp.com/2.0/lists/segment-add").
@@ -18,7 +19,7 @@ RSpec.describe CreateMailchimpSegmentWorker, :type => :worker do
     end
 
     it 'should create a Mailchimp segment' do
-      CreateMailchimpSegmentWorker.new.perform segment_name, resource_name, resource_id
+      CreateMailchimpSegmentWorker.new.perform segment_name, resource_name, resource_id, resource_mailchimp_uid_column
 
       assert_requested(
         :post,
@@ -29,7 +30,7 @@ RSpec.describe CreateMailchimpSegmentWorker, :type => :worker do
 
     it "should update resource's Mailchimp uid" do
       expect {
-        CreateMailchimpSegmentWorker.new.perform segment_name, resource_name, resource_id
+        CreateMailchimpSegmentWorker.new.perform segment_name, resource_name, resource_id, resource_mailchimp_uid_column
       }.to change{ event.reload.mailchimp_segment_uid }
     end
   end

@@ -1,7 +1,7 @@
 class CreateMailchimpSegmentWorker
   include Sidekiq::Worker
 
-  def perform segment_name, resource_name, resource_id
+  def perform segment_name, resource_name, resource_id, resource_mailchimp_uid_column
     segment = Gibbon::API.lists.segment_add(
       id: ENV['MAILCHIMP_LIST_ID'],
       opts: {
@@ -11,6 +11,6 @@ class CreateMailchimpSegmentWorker
     )
 
     resource = eval(resource_name).find(resource_id)
-    resource.update_attribute :mailchimp_segment_uid, segment["id"]
+    resource.update_attribute resource_mailchimp_uid_column, segment["id"]
   end
 end
