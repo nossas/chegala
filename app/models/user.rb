@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  after_create { self.add_to_mailchimp_list }
+  after_create { self.delay.add_to_mailchimp_list }
 
   validates :first_name, :last_name, presence: true
 

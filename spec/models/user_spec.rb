@@ -8,7 +8,9 @@ RSpec.describe User, :type => :model do
     subject { User.make! }
 
     it "should update mailchimp_uid" do
-      expect(subject.mailchimp_uid).to_not be_nil
+      expect {
+        subject.add_to_mailchimp_list
+      }.to change{ subject.mailchimp_uid }
     end
   end
 
