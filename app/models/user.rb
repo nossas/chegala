@@ -30,16 +30,4 @@ class User < ActiveRecord::Base
       Rails.logger.error e
     end
   end
-
-  def create_mailchimp_segment
-    segment = Gibbon::API.lists.segment_add(
-      id: ENV['MAILCHIMP_LIST_ID'],
-      opts: {
-        type: "static",
-        name: "[Organizador] #{self.name}"
-      }
-    )
-
-    self.update_attribute :mailchimp_segment_uid, segment["id"]
-  end
 end

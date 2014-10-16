@@ -4,29 +4,13 @@ RSpec.describe User, :type => :model do
   it { should validate_presence_of :first_name }
   it { should validate_presence_of :last_name }
 
-  describe "#after_create" do
+  describe "#add_to_mailchimp_list" do
     subject { User.make! }
 
     it "should update mailchimp_uid" do
       expect {
         subject.add_to_mailchimp_list
       }.to change{ subject.mailchimp_uid }
-    end
-  end
-
-  describe "#create_mailchimp_segment" do
-    it "should update mailchimp_segment_uid" do
-      stub_request(:post, "https://api.mailchimp.com/2.0/lists/segment-add").
-        with(:body => "{\"apikey\":\"#{ENV['MAILCHIMP_API_KEY']}\",\"id\":\"#{ENV['MAILCHIMP_LIST_ID']}\",\"opts\":{\"type\":\"static\",\"name\":\"[Organizador] #{subject.name}\"}}").
-        to_return(
-          :status => 200,
-          :body => File.open("#{Rails.root}/spec/support/fixtures/mailchimp/segment_add.json").read,
-          :headers => {}
-        )
-
-      expect {
-        subject.create_mailchimp_segment
-      }.to change{ subject.mailchimp_segment_uid }
     end
   end
 

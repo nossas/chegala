@@ -18,3 +18,4 @@ config/database.yml
 .idea/
 .DS_Store
 coverage/
+dump.rdb
